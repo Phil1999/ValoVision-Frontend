@@ -1,6 +1,12 @@
+import StrategyCanvas from "@/components/Strategy/StrategyCanvas";
+
 const Home = () => {
     return (
-        <h1>Hello World</h1>
+        <>
+            <h1>Valorant Strategy Planner</h1>
+            <StrategyCanvas />
+        </>
+
     )
 };
 
