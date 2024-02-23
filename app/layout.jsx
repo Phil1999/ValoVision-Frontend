@@ -6,7 +6,10 @@ import FloatingButtonInfo from '@/components/public/FloatingButton/FloatingButto
 
 export const metadata = {
     title: "ValoVision",
-    description: "Placeholder text"
+    description: "Placeholder text",
+    icons: {
+      icon: "assets/favicon/favicon.webp",
+    },
 }
 
 const RootLayout = ({children}) => {

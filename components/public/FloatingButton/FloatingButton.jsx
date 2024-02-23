@@ -25,7 +25,7 @@ const FloatingButton = ({ title }) => {
 
                 <p>
                   <strong>Modify Markers: </strong>
-                  Use "Undo" to revert actions or "Clear" to remove all markers.
+                  Use "Undo" to revert your last action or "Clear" to remove all markers.
                 </p>
 
                 <p>
