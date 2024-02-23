@@ -1,13 +1,15 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { Select } from "antd";
+import { useRef, useEffect } from "react";
+import "./styles.css";
+import { Button } from "antd";
+import { DownloadOutlined } from "@ant-design/icons";
 
-
-export default function StrategyCanvas() {
+const StrategyCanvas = ({ currentMap, markers, onAddMarker, currentMarker }) => {
   const canvasRef = useRef(null);
-  const [currentMap, setCurrentMap] = useState("haven.jpg");
-  const [markers, setMarkers] = useState([]);
+
+  const canvasWidth = 800;
+  const canvasHeight = 600;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,16 +17,33 @@ export default function StrategyCanvas() {
     const mapImage = new Image();
 
     mapImage.onload = () => {
-      canvas.width = mapImage.width;
-      canvas.height = mapImage.height;
-      context.drawImage(mapImage, 0, 0);
-      markers.forEach((marker) => placeMarker(context, marker.x, marker.y));
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+      context.drawImage(mapImage, 0, 0, canvasWidth, canvasHeight);
+      markers.forEach((marker) => {
+        if (marker.icon) {
+          placeAgentMarker(context, marker.x, marker.y, marker.icon);
+        } else {
+          placeRedDotMarker(context, marker.x, marker.y);
+        }
+      });
     };
 
     mapImage.src = `/assets/images/${currentMap}`;
   }, [markers, currentMap]);
 
-  const placeMarker = (context, x, y) => {
+  const placeAgentMarker = (context, x, y, icon) => {
+    const agentImage = new Image();
+    const iconSize = 30;
+
+    agentImage.onload = () => {
+      context.drawImage(agentImage, x - iconSize / 2, y - iconSize / 2, iconSize, iconSize);
+  };
+
+  agentImage.src = icon;
+  };
+
+  const placeRedDotMarker = (context, x, y) => {
     context.fillStyle = "red";
     context.beginPath();
     context.arc(x, y, 10, 0, Math.PI * 2);
@@ -35,44 +54,33 @@ export default function StrategyCanvas() {
     const rect = canvasRef.current.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    setMarkers((prev) => [...prev, { x, y }]);
+    onAddMarker(x, y, currentMarker.icon);
   };
 
-  const handleSelectMap = (value) => {
-    clearMarkers();
-    setCurrentMap(`${value}`);
-};
 
-  const undoLastMarker = () => {
-    setMarkers((markers) => markers.slice(0, markers.length - 1));
-  };
-
-  const clearMarkers = () => {
-    setMarkers([]);
+  const saveCanvasAsImage = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const image = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.download = "strategy-plan.png";
+      link.href = image;
+      link.click();
+    }
   };
 
   return (
     <>
-      <Select
-        onChange={handleSelectMap}
-        defaultValue="Haven"
-        style={{
-          width: 120,
-        }}
-        options={[
-          {
-            value: "haven.jpg",
-            label: "Haven",
-          },
-          {
-            value: "breeze.png",
-            label: "Breeze",
-          },
-        ]}
-      />
-      <canvas ref={canvasRef} onClick={handleClick} width={800} height={600} />
-      <button onClick={clearMarkers}>Clear</button>
-      <button onClick={undoLastMarker}>Undo</button>
+      <canvas className="strategy-canvas" ref={canvasRef} onClick={handleClick} />
+      <Button 
+        icon={<DownloadOutlined />} 
+        onClick={saveCanvasAsImage} 
+      >
+        Save
+      </Button>
     </>
   );
+
 }
+
+export default StrategyCanvas;

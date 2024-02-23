@@ -1,10 +1,9 @@
-import StrategyCanvas from "@/components/Strategy/StrategyCanvas";
+import StrategyPlanner from "@/components/Strategy/StrategyPlanner";
 
 const Home = () => {
     return (
         <>
-            <h1>Valorant Strategy Planner</h1>
-            <StrategyCanvas />
+            <StrategyPlanner />
         </>
 
     )

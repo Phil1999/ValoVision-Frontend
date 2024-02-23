@@ -1,8 +1,8 @@
-import { Inter } from "next/font/google";
 import '../styles/globals.css';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from '@/components/Header/header.jsx';
+import Footer from '@/components/Footer/footer.jsx';
+import FloatingButtonInfo from '@/components/public/FloatingButton/FloatingButton';
 
 export const metadata = {
     title: "ValoVision",
@@ -12,8 +12,11 @@ export const metadata = {
 const RootLayout = ({children}) => {
     return (
         <html lang="en">
-          <body className={inter.className}>
+          <body>
+            <FloatingButtonInfo title="FAQ" />
+            <Header />
             <AntdRegistry>{children}</AntdRegistry>
+            <Footer />
           </body>
         </html>
       );
