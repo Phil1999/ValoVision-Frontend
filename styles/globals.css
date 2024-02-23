@@ -45,7 +45,7 @@ h1, h2, h3 {
     font-weight: bold;
     
     padding: 5px 10px;
-    /* Create a box-shadow for a glowing effect */
-    box-shadow: 0 0 8px rgba(26, 115, 232, 0.7); /* Adjust color and blur radius as needed */
+    box-shadow: 0 0 8px var(--highlight-blue);
+    border-radius: 8px;
 }
 

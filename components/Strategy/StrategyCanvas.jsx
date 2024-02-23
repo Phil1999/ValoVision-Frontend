@@ -11,6 +11,8 @@ const StrategyCanvas = ({ currentMap, markers, onAddMarker, currentMarker }) => 
   const canvasWidth = 800;
   const canvasHeight = 600;
 
+  const linkName = "strategy-plan";
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
@@ -63,7 +65,7 @@ const StrategyCanvas = ({ currentMap, markers, onAddMarker, currentMarker }) => 
     if (canvas) {
       const image = canvas.toDataURL("image/png");
       const link = document.createElement("a");
-      link.download = "strategy-plan.png";
+      link.download = linkName;
       link.href = image;
       link.click();
     }
@@ -76,7 +78,7 @@ const StrategyCanvas = ({ currentMap, markers, onAddMarker, currentMarker }) => 
         icon={<DownloadOutlined />} 
         onClick={saveCanvasAsImage} 
       >
-        Save
+        Save Image
       </Button>
     </>
   );
