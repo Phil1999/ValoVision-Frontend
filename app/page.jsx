@@ -1,6 +1,11 @@
+import StrategyPlanner from "@/components/Strategy/StrategyPlanner";
+
 const Home = () => {
     return (
-        <h1>Hello World</h1>
+        <>
+            <StrategyPlanner />
+        </>
+
     )
 };
 
