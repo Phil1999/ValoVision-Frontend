@@ -16,8 +16,8 @@ const Header = () => {
             <nav className = "navigation">
                 <Link className={`${pathname === '/' ? 'active' : ''}`} href="/">HOME</Link>
                 <Link className={`${pathname === '/maps' ? 'active' : ''}`} href="/maps">MAPS</Link>
-                <Link className={`${pathname === 'agents' ? 'active' : ''}`} href="/agents">AGENTS</Link>
-                <Link className={`${pathname === 'strategies' ? 'active' : ''}`} href="/strategies">STRATEGIES</Link>
+                <Link className={`${pathname === '/agents' ? 'active' : ''}`} href="/agents">AGENTS</Link>
+                <Link className={`${pathname === '/strategies' ? 'active' : ''}`} href="/strategies">STRATEGIES</Link>
 
             </nav>
 
