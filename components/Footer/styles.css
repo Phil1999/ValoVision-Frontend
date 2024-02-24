@@ -11,5 +11,9 @@
     position: fixed;
     margin-top: 100px;
     bottom: 0;
-    
+    width: 100%;
+}
+
+.footer p {
+    padding-right: 50px;
 }

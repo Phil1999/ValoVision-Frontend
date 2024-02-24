@@ -51,8 +51,8 @@ const FloatingButton = ({ title }) => {
           type="primary"
           onClick={showModalInfo}
           style={{
-              right: 75,
-              bottom: 75,
+              right: 50,
+              bottom: 40,
           }}
         />
     );
