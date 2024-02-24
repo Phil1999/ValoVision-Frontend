@@ -50,5 +50,6 @@ we don't need to keep adding padding at an individual component level  TODO */
 .main-content {
     padding-bottom: 100px;
     padding: 20px;
+    min-height: 100vh;
 }
 
