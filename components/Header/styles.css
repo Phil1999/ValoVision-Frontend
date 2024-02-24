@@ -46,5 +46,8 @@ a:link {
         flex-direction: column;
         padding-bottom: 20px;
     }
-
+    .navigation a {
+        display: flex;
+        flex-direction: column;
+    }
 }

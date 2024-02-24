@@ -11,5 +11,9 @@
     position: relative;
     margin-top: auto;
     bottom: 0;
-    
+    width: 100%;
+}
+
+.footer p {
+    padding-right: 50px;
 }
