@@ -20,7 +20,7 @@ const FloatingButton = ({ title }) => {
                 <p>
                   <strong>Place and Choose Agents: </strong>
                   Place agent markers by clicking on an agent icon. The blank icon lets you draw
-                  red dots.
+                  red dots (enemies).
                 </p>
 
                 <p>
