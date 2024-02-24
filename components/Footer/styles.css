@@ -5,6 +5,11 @@
     text-align: center;
     align-items: center;
     padding: 0 20px;
-    border-top: 5px solid var(--border-silver);
+    border-top: 2px solid var(--border-silver);
     color: var(--text-light);
+    background-color: var(--smoke-grey);
+    position: fixed;
+    margin-top: 100px;
+    bottom: 0;
+    
 }

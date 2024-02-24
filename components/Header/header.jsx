@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <header className = "header">
             <div className = 'app-name'>
-                <h1>Valorant Strategy Planner</h1>
+                <Link href ="/"><h1>Valorant Strategy Planner</h1></Link>
             </div>
 
             <nav className = "navigation">
