@@ -1,0 +1,96 @@
+/* General Container Styles */
+.map-page-container {
+  /* Styles if needed */
+}
+
+.row-container {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+/* Card Component Styles */
+.map-card {
+  max-width: 100%;
+  box-shadow: var(--valorant-dark);
+}
+
+.map-card .ant-card-body {
+  padding: 0 !important;
+}
+
+.map-card .ant-card-actions {
+  background: var(--valorant-dark) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  pointer-events: none;
+}
+
+.ant-card-bordered {
+  border: none !important;
+}
+
+/* Card Image Container */
+.map-card .image-container {
+  position: relative;
+  overflow: hidden; /* Prevents border from spilling out */
+  border: 1px solid var(--valorant-dark);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.646);
+}
+
+.map-card .image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3rem solid var(--valorant-dark);
+  box-sizing: border-box;
+  z-index: 1;
+  transition: all 0.2s ease;
+}
+
+.map-card .image-container:hover::after {
+  border: 3.5rem solid var(--valorant-dark);
+}
+
+/* Image Styles */
+.map-card .item-image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  height: auto;
+  transition: all 0.2s ease;
+}
+
+/* Overlay Styles */
+.map-card .custom-overlay {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: var(--text-light);
+  text-align: left;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 5px black;
+  z-index: 2; /* Higher than the ::after pseudo-element to stay on top */
+  line-height: 3rem;
+}
+
+.btn-icon svg {
+  color: var(--text-light);
+  font-size: 30px;
+}
+
+/* Button Group Styles */
+.btn-group {
+  display: flex !important;
+  justify-content: space-evenly !important;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Action Buttons Pointer Events */
+.ant-card-actions button {
+  pointer-events: auto;
+}

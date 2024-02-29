@@ -1,9 +1,10 @@
-import MapsGallery from "@/components/MapsGallery/MapsGallery";
+import MapPage from "@/components/Maps/MapPage";
+import MapCard from "@/components/Maps/MapCard";
 
 const Maps = () => {
   return (
     <>
-      <MapsGallery />;
+      <MapPage/>
     </>
   );
 };
