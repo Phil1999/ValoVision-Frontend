@@ -8,13 +8,13 @@ const AgentSelector = ({ onSelection }) => {
 
     const items = [
         // Agents
-        { name: 'Jett', icon: '/assets/icons/jett.jpg' },
-        { name: 'Phoenix', icon: '/assets/icons/phoenix.jpg' },
-        { name: 'Sage', icon: '/assets/icons/sage.jpg' },
+        { name: 'Jett', icon: '/assets/icons/agents/jett.jpg' },
+        { name: 'Phoenix', icon: '/assets/icons/agents/phoenix.jpg' },
+        { name: 'Sage', icon: '/assets/icons/agents/sage.jpg' },
         // Utilities
-        { name: 'Smoke', icon: '/assets/icons/smoke.jpg' },
-        { name: 'Flash', icon: '/assets/icons/flash.jpg' },
-        { name: 'Barrier', icon: '/assets/icons/barrier.jpg' },
+        { name: 'Smoke', icon: '/assets/icons/utilities/smoke.jpg' },
+        { name: 'Flash', icon: '/assets/icons/utilities/flash.jpg' },
+        { name: 'Barrier', icon: '/assets/icons/utilities/barrier.jpg' },
         { name: 'none', icon: '' },
     ];
 
