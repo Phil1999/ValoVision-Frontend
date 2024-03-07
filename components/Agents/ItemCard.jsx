@@ -3,29 +3,33 @@ import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 
 
 const ItemCard = ( {item, onDelete, onEdit }) => {
+    // extremely bad way to do this, but refactor later...
+    const isAgent = item.agentID !== undefined;
+    const id = isAgent ? item.agentID : item.utilityID;
+    const name = isAgent ? item.agentName : item.utilityName;
+    const iconLink = isAgent ? item.agentPortraitLink : item.utilityIconLink;
+
     return (
         <Card 
             className = "item-card"
-            title={item.name}
+            title={name}
             actions={[
                 <Button 
                   icon={<EditOutlined />} 
                   onClick={() => onEdit(item)} 
-                  disabled 
                   key="edit" 
                   type="text"
                 />,
                 <Button 
                   icon={<DeleteOutlined />} 
-                  onClick={() => onDelete(item.id)} 
-                  disabled 
+                  onClick={() => onDelete(id)} 
                   key="delete"
                   type="text"
                 />
               ]}
         >
-            <p><strong>ID: </strong>{item.id}</p>
-            <img className = "item-image" src={item.iconLink} ></img>
+            <p><strong>ID: </strong>{id}</p>
+            <img className = "item-image" src={iconLink} ></img>
         </Card>
     );
 }

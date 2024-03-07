@@ -19,9 +19,9 @@ const RootLayout = ({children}) => {
             <FloatingButtonInfo title="FAQ" />
             <Header />
             <AntdRegistry>
-              <main className="main-content">
-                {children}
-              </main>
+                <main className="main-content">
+                    {children}
+                </main>
             </AntdRegistry>
             <Footer />
           </body>
