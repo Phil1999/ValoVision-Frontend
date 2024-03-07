@@ -1,6 +1,9 @@
 import axios from 'axios';
+import getBackendURL from '@/utils/urls';
 
-const agents_api_url = process.env.NEXT_PUBLIC_APP_BACKEND_URL + '/api/agents';
+
+
+const agents_api_url = `${getBackendURL()}/api/agents`;
 
 export const fetchAgents = async () => {
     try {
