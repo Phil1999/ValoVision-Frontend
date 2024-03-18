@@ -1,11 +1,10 @@
 "use client";
-import { Row, Col, Divider, Space } from "antd";
 import MapCard from "./MapCard";
 import "./styles.css";
 import dynamic from "next/dynamic";
 
 const UploadMapBtn = dynamic(() => import("./UploadMapBtn"), {
-  ssr: false, // This component will only render on the client-side
+  ssr: false,
 });
 
 const maps = [
@@ -19,28 +18,18 @@ const maps = [
 const MapPage = () => {
   return (
     <>
-      <Divider type="vertical" />
-      <Row gutter={[50, 50]} justify="space-evenly" className="row-container">
+      <h1>Valorant Maps</h1>
+      <div id="row-container">
         {maps.map((map) => (
-          <Col
-            key={map.id}
-            xs={24}
-            sm={12}
-            md={12}
-            lg={12}
-            xl={12}
-            className="map-container"
-          >
+          <div key={map.id} className="map-container">
             <MapCard item={map} />
-          </Col>
+          </div>
         ))}
-      </Row>
-      <Divider />
-      <Row justify="space-evenly">
-        <Col>
-          <UploadMapBtn />
-        </Col>
-      </Row>
+      </div>
+      <div className="divider"></div>
+      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <UploadMapBtn />
+      </div>
     </>
   );
 };

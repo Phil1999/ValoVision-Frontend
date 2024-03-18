@@ -1,43 +1,35 @@
-import { Card, Button, Image } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./styles.css";
+import { Button, Divider, Space } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const MapCard = ({ item }) => {
   return (
-    <Card
-      className="map-card"
-      actions={[
-        <div className="btn-group">
+    <div className="card" id="map-card">
+      <div className="image-container">
+        <img className="item-image" alt={item.name} src={item.src} />
+        <div className="custom-overlay">{item.name}</div>
+      </div>
+      <div id="btn-group">
+        <Space split={<Divider type="vertical" />}>
           <Button
-            size="large"
-            className="card-buttons"
-            icon={<EditOutlined className="btn-icon" />}
+            icon={<EditOutlined style={{ fontSize: "24px", color: "#fff" }} />}
+            // onClick={() => onEdit(item)}
             disabled
             key="edit"
             type="text"
           />
           <Button
-            size="large"
-            className="card-buttons"
-            icon={<DeleteOutlined className="btn-icon" />}
+            icon={
+              <DeleteOutlined style={{ fontSize: "24px", color: "#fff" }} />
+            }
+            // onClick={() => onEdit(item)}
             disabled
-            key="delete"
+            key="edit"
             type="text"
           />
-        </div>,
-      ]}
-      cover={
-        <div className="image-container">
-          <Image
-            className="item-image"
-            alt={item.name}
-            src={item.src}
-            visible={false}
-          />
-          <div className="custom-overlay">{item.name}</div>
-        </div>
-      }
-    ></Card>
+        </Space>
+      </div>
+    </div>
   );
 };
 
