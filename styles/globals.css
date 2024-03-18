@@ -24,6 +24,7 @@ html, body {
     /* Text Colors */
     --text-light: #FFFFFF;
     --text-dark: #1E1E1E;
+    --text-muted: rgba(255, 255, 255, 0.501);
 
     /* Utility Colors */
     --border-silver: #707070;
