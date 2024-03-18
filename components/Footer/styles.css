@@ -1,13 +1,18 @@
 .footer {
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
     align-items: center;
-    padding: 0 20px;
-    border-top: 2px solid var(--border-silver);
-    color: var(--text-light);
+    padding: 8px 5px; 
+    border-top: 1px solid var(--border-silver);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    color: var(--text-muted);
     background-color: var(--smoke-grey);
-    position: relative;
-    margin-top: 100px;
-}
+    text-align: center; 
+    font-size: 13px; 
+    line-height: 1.25rem; 
+    margin-top: 40px; 
+    position: relative; 
+  }
+
+  
