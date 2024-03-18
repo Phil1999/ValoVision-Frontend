@@ -1,0 +1,113 @@
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2rem solid var(--valorant-dark);
+  box-sizing: border-box;
+  transition: border-width 0.15s ease-in;
+  z-index: 0;
+}
+
+.image-container:hover::after {
+  border-width: 2.5rem;
+}
+
+#row-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px; 
+  min-width: 600px;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgb(0, 0, 0);
+}
+
+.item-image {
+  max-width: 100%;
+  display: block;
+}
+
+.custom-overlay {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 100%;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 2.5rem;
+  text-shadow: 3px 1px 5px black;
+  z-index: 1;
+  line-height: 1;
+}
+
+#btn-group {
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.card-buttons {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 5px;
+}
+
+.card-buttons:disabled {
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  width: 150px;
+  height: 10px;
+  display: inline-block;
+}
+
+.map-container {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  #row-container {
+    grid-template-columns: 1fr;
+    min-width: 0; 
+  }
+
+  .image-container::after,
+  .image-container:hover::after {
+    border-width: 1rem;
+  }
+
+  .custom-overlay {
+    font-size: 1.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .btn-icon {
+    width: 100px;
+  }
+}
