@@ -2,24 +2,29 @@ import "./styles.css";
 import { Button, Divider, Space } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-const MapCard = ({ item, onDelete }) => {
+const MapCard = ({ item }) => {
   return (
     <div className="card" id="map-card">
       <div className="image-container">
-        <img className="item-image" alt={item.mapName} src={item.mapImageLink} />
-        <div className="custom-overlay">{item.mapName}</div>
+        <img className="item-image" alt={item.name} src={item.src} />
+        <div className="custom-overlay">{item.name}</div>
       </div>
       <div id="btn-group">
         <Space split={<Divider type="vertical" />}>
           <Button
             icon={<EditOutlined style={{ fontSize: "24px", color: "#fff" }} />}
-            // You might later implement an edit functionality here
-            disabled // Temporarily disabled until functionality is implemented
+            // onClick={() => onEdit(item)}
+            disabled
+            key="edit"
             type="text"
           />
           <Button
-            icon={<DeleteOutlined style={{ fontSize: "24px", color: "#fff" }} />}
-            onClick={() => onDelete(item.mapId)} // Use the onDelete function passed from the parent component
+            icon={
+              <DeleteOutlined style={{ fontSize: "24px", color: "#fff" }} />
+            }
+            // onClick={() => onEdit(item)}
+            disabled
+            key="edit"
             type="text"
           />
         </Space>
