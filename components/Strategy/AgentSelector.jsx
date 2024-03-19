@@ -1,22 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Avatar, Space } from 'antd';
+import useUtilitiesStore from '@/stores/utilitiesStore';
+import useAgentsStore from '@/stores/agentsStore';
+
 
 const AgentSelector = ({ onSelection }) => {
     const [selectedItem, setSelectedItem] = useState('Jett');
 
-    const items = [
-        // Agents
-        { name: 'Jett', icon: '/assets/icons/agents/jett.jpg' },
-        { name: 'Phoenix', icon: '/assets/icons/agents/phoenix.jpg' },
-        { name: 'Sage', icon: '/assets/icons/agents/sage.jpg' },
-        // Utilities
-        { name: 'Smoke', icon: '/assets/icons/utilities/smoke.jpg' },
-        { name: 'Flash', icon: '/assets/icons/utilities/flash.jpg' },
-        { name: 'Barrier', icon: '/assets/icons/utilities/barrier.jpg' },
-        { name: 'none', icon: '' },
-    ];
+
+    const {
+      utilities,
+      fetchUtilities,
+    } = useUtilitiesStore();
+    
+    const {
+      agents,
+      fetchAgents,
+    } = useAgentsStore();
+
+    useEffect(() => {
+      fetchAgents();
+      fetchUtilities();
+    }, [])
+
+  // We need to remap the values  
+  const combinedItems = [
+      ...agents.map(agent => ({
+        name: agent.agentName,
+        icon: agent.agentPortraitLink
+      })),
+      ...utilities.map(utility => ({
+        name: utility.utilityName,
+        icon: utility.utilityIconLink
+      })),
+      { name: 'none', icon: '' },
+  ];
 
     const handleItemClick = (item) => {
         setSelectedItem(item.name);
@@ -25,9 +45,9 @@ const AgentSelector = ({ onSelection }) => {
 
     return (
         <Space>
-        {items.map((item, index) => (
+        {combinedItems.map((item, index) => (
             <Avatar
-            className={`item-select ${selectedItem === item.name ? 'item-icon-selected' : ''} ${index !== items.length - 1 ? 'avatar-divider' : ''}`}
+            className={`item-select ${selectedItem === item.name ? 'item-icon-selected' : ''} ${index !== combinedItems.length - 1 ? 'avatar-divider' : ''}`}
                 key={item.name}
                 src={item.icon}
                 size="large"

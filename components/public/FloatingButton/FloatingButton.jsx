@@ -29,6 +29,12 @@ const FloatingButton = ({ title }) => {
                 </p>
 
                 <p>
+                  <strong>Adding Markers: </strong>
+                  You can add more markers by going to the "Agents" page and adding more agents/utilities.
+                </p>
+
+
+                <p>
                   <strong>Save and Share: </strong>
                   Save your strategy for later or share it with your team using the provided saving options.
                 </p>
@@ -36,7 +42,6 @@ const FloatingButton = ({ title }) => {
                 <p>
                   <strong>Tips: </strong>
                   Utilize zoom for detail, and annotatate your strategy.
-                  Support is available for any help needed. Feel free to contact us!
                 </p>
             </div>
           ),
