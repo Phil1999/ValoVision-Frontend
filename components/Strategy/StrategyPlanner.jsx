@@ -15,10 +15,12 @@ const StrategyPlanner = () => {
 
     const [strategyTitle, setStrategyTitle] = useState('');
     const [strategyDescription, setStrategyDescription] = useState('');
+    const [strategyImageLink, setStrategyImageLink] = useState('assets/images/')
 
     const handleSelectMap = (value) => {
         clearMarkers();
         setCurrentMap(value);
+        setStrategyImageLink(prevLink => `${prevLink}${value}`);
     };
 
     const handleMarkerSelection = (selection) => {
@@ -38,14 +40,13 @@ const StrategyPlanner = () => {
     };
 
     const handleSaveStrategy = async () => {
-        // We also need to send the strategyImage as well (need to think about how to structure)
         const strategyData = {
             strategyTitle,
             strategyDescription,
-            mapID: currentMap,
-            markers,
+            strategyImageLink,
+            mapID: 1, // TODO: We need to fetch the actual map id
+            
         };
-        console.log("Submitting strategy...", strategyData);
     };
 
     return (
