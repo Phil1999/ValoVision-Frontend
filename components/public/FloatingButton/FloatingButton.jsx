@@ -30,7 +30,7 @@ const FloatingButton = ({ title }) => {
 
                 <p>
                   <strong>Adding Markers: </strong>
-                  You can add more markers by going to the "Agents" page and adding more agents/utilities.
+                  You can add more markers by going to the  &quot;Agents&quot; page and adding more agents/utilities.
                 </p>
 
 
