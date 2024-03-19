@@ -28,7 +28,6 @@ const ItemCard = ( {item, onDelete, onEdit }) => {
                 />
               ]}
         >
-            <p><strong>ID: </strong>{id}</p>
             <img className = "item-image" src={iconLink} ></img>
         </Card>
     );

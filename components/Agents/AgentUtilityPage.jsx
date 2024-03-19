@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Tabs, Button, Drawer, Form, Input, Upload } from "antd";
+import { Tabs, Button, Drawer, Form, Select, Input, Upload } from "antd";
 import {
   UploadOutlined,
   UserOutlined,
@@ -10,8 +10,10 @@ import {
 import "./styles.css";
 import ItemCard from "./ItemCard";
 import useAgentsStore from "@/stores/agentsStore";
+import useUtilitiesStore from "@/stores/utilitiesStore";
 import AddAgentDrawer from "./AddAgentDrawer";
 import EditAgentDrawer from "./EditAgentDrawer";
+import dataUtilities from '@/public/data/utilities';
 
 
 const AgentUtilityPage = () => {
@@ -26,6 +28,17 @@ const AgentUtilityPage = () => {
   } = useAgentsStore();
 
 
+  const {
+    utilities,
+    fetchUtilities,
+    addUtility,
+    updateUtility,
+    deleteUtility,
+  } = useUtilitiesStore();
+
+  const [utilitySelectedImage, setUtilitySelectedImage] = useState("");
+
+
   const [activeTab, setActiveTab] = useState("1");
 
   const [formAgentCreate] = Form.useForm();
@@ -34,7 +47,7 @@ const AgentUtilityPage = () => {
   const [isEditDrawerVisible, setIsEditDrawerVisible] = useState(false);
   const [currentAgent, setCurrentAgent] = useState(null);
 
-  const onFinishAddingAgent= async (values) => {
+  const onFinishAddingAgent = async (values) => {
     const isDuplicate = agents.some(
       (agent) => agent.agentName === values.agentName
     );
@@ -59,7 +72,48 @@ const AgentUtilityPage = () => {
       console.error("Failed to add agent: ", error);
     }
   };
-  const onUtilityFormFinish = () => {};
+
+  const onFinishAddUtility = async (values) => {
+    const isDuplicate = utilities.some(
+      (utility) => utility.utilityName === values.utilityName
+    );
+
+    if (isDuplicate) {
+      alert("A utility with this name already exists.");
+      return;
+    }
+
+    const utilityData = {
+      utilityName: values.utilityName,
+      utilityIconLink: values.utilityIconLink,
+    };
+
+    try {
+      await addUtility(utilityData);
+      onClose();
+      formUtility.resetFields();
+      fetchUtilities();
+    } catch (error) {
+      console.error("Failed to add utility: ", error);
+    }
+  };
+
+
+  const handleDeleteUtility = async (utilityID) => {
+      try {
+        await deleteUtility(utilityID)
+        fetchUtilities();
+      } catch (error) {
+        console.error("Failed to remove utility", error);
+      }
+  };
+
+  const onUtilityFormFinish = (values) => {
+    onFinishAddUtility(values);
+    formUtility.resetFields();
+    setUtilitySelectedImage("");
+    onClose();
+  };
   const handleDeleteAgent = async (agentID) => {
     try {
       await deleteAgent(agentID);
@@ -114,27 +168,11 @@ const AgentUtilityPage = () => {
     setActiveTab(key);
   };
 
-  const utilities = [
-    {
-      utilityID: 1,
-      utilityName: "Smoke",
-      utilityIconLink: "/assets/icons/utilities/smoke.jpg",
-    },
-    {
-      utilityID: 2,
-      utilityName: "Flash",
-      utilityIconLink: "/assets/icons/utilities/flash.jpg",
-    },
-    {
-      utilityID: 3,
-      utilityName: "Barrier",
-      utilityIconLink: "/assets/icons/utilities/barrier.jpg",
-    },
-  ];
 
   useEffect(() => {
     // Fetch once when this component renders
     fetchAgents();
+    fetchUtilities();
   }, []);
 
   const tabsItems = [
@@ -173,7 +211,7 @@ const AgentUtilityPage = () => {
             <ItemCard
               key={`utility-${utility.utilityID}`}
               item={utility}
-              onDelete={() => console.log()}
+              onDelete={handleDeleteUtility}
               onEdit={() => console.log()}
             />
           ))}
@@ -231,19 +269,28 @@ const AgentUtilityPage = () => {
               { required: true, message: "Please enter a utility name!" },
             ]}
           >
-            <Input placeholder="Enter utility name" />
+
+            <Select
+            placeholder="Select a utility"
+            onChange={(value) => {
+              const selectedUtility = dataUtilities.find(utility => utility.utilityName === value);
+              setUtilitySelectedImage(selectedUtility.utilityIconLink);
+              formUtility.setFieldsValue({ utilityIconLink: selectedUtility.utilityIconLink });
+            }}
+            >
+            {dataUtilities.map((utility) => (
+              <Select.Option key={utility.utilityName} value={utility.utilityName}>{utility.utilityName}</Select.Option>
+            ))}
+            </Select>
           </Form.Item>
+
           <Form.Item
-            name="utilityIconLink"
-            label="Utility Icon"
-            valuePropName="fileList"
-            getValueFromEvent={(e) => console.log(e)}
-            extra="Upload utility icon"
+          name="utilityIconLink"
+          label="Utility Icon"
           >
-            <Upload>
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
-            </Upload>
-          </Form.Item>
+          <Input disabled />
+        </Form.Item>
+
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit

@@ -1,43 +1,43 @@
 import { create } from 'zustand';
-import { fetchUtilities, createUtilities, updateUtilities, deleteUtilities } from '@/api/Agents/utilitiesApi';
+import { fetchUtilities, createUtility, updateUtility, deleteUtility } from '@/api/Agents/utilitiesApi';
 
-const useAgentsStore = create((set) => ({
-    agents: [],
+const useUtilitiesStore = create((set) => ({
+    utilities: [],
     loading: false,
     error: null,
-    fetchAgents: async () => {
+    fetchUtilities: async () => {
         set({ loading: true});
         try {
-            const agents = await fetchAgents();
-            set({ agents, loading: false});
+            const utilities = await fetchUtilities();
+            set({ utilities, loading: false});
         } catch (error) {
             set({error: error.message, loading: false});
         }
     },
-    addAgent: async (agentData) => {
+    addUtility: async (utilityData) => {
         try {
-            const newAgent = await createAgent(agentData);
-            set((state) => ({ agents: [...state.agents, newAgent]}));
+            const newUtility = await createUtility(utilityData);
+            set((state) => ({ utilities: [...state.utilities, newUtility]}));
         } catch (error) {
             set({ error: error.message, loading: false});
         }
     },
-    updateAgent: async (id, agentData) => {
+    updateUtility: async (id, utilityData) => {
         try {
-            await updateAgent(id, agentData);
+            await updateAgent(id, utilityData);
             set((state) => ({
-                agents: state.agents.map(
-                    (agent) => (agent.id === id ? { ...agent, ...agentData } : agent)),
+                utilities: state.utilities.map(
+                    (utility) => (utility.utilityID === id ? { ...utility, ...utilityData } : utility)),
             }));
         } catch (error) {
             set({ error: error.message, loading: false });
         }
     },
-    deleteAgent: async (id) => {
+    deleteUtility: async (id) => {
         try {
-            await deleteAgent(id);
+            await deleteUtility(id);
             set((state) => ({
-                agents: state.agents.filter((agent) => agent.id !== id),
+                utilities: state.utilities.filter((agent) => utility.utilityID !== id),
             }));
         } catch (error) {
             set({ error: error.message, loading: false });
@@ -46,4 +46,4 @@ const useAgentsStore = create((set) => ({
 
 }));
 
-export default useAgentsStore;
+export default useUtilitiesStore;
